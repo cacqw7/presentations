@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Eloquent Ruby</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+
+      .shout h1{
+        font-size: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+# Nanoconf
+
+.center[
+  ![img](http://ecx.images-amazon.com/images/I/41IDuwJXFCL.jpg)
+]
+
+
+???
+Some notes
+---
+# Back to basics
+.center[
+![powerwashing](http://i.giphy.com/dWpA1cYlyyb1C.gif)
+]
+
+???
+This whole presentation isn't to neccesarily teach you anything new, but to just start a conversation, and
+get everyones brains a little bit back to basics. We can get lost in the trudge of day in and day
+out programming, getting Pull Requests in, getting alerts squashed. So Take this as an opportunity to just
+sit back, and think about some of the finer points of the language we use everyday.
+---
+
+# !TODO
+  - Fundamentals
+  - Blocks
+  - Methods
+  - Classes
+???
+  - A few basics (some thigns you know but might have taken for granted)
+  This book is full of great material. The rest will be just highlighting some parts of
+  the ruby language that I found particularly interesting. A little higher level than just
+  making you guys listen to all the ways strings can be manipulated.
+  - Blocks, methods, and then classes
+
+---
+class: middle, inverse
+> "Ruby is a language for grownups. It gives you the tools for writing clear and concise code, but it's up to you to use them."
+
+???
+This is quote that really stood out to me in the book. At least for me, it's something I think I take for granted more often
+than not. Ruby really gives us all the control when writing code. Just the thought of having to define the Type our function will
+take in and the type it will return makes most of us squeem. let alone strongly typed variables as well.
+
+---
+name: dynamic
+## Dynamic Typing
+???
+Ruby uses dynamic typing, as well all know meaning we don't have to explicitly state types.
+Arguemnt types, variable types, return value types.
+There are some clear advantages to this.
+---
+template: dynamic
+name: dynamic2
+- Compact code
+???
+Our code is very compact.
+---
+template: dynamic
+#### Java
+```java
+public class HelloWorld
+{
+	public static void main(String[] args) {
+		System.out.println("Hello World!");
+	}
+}
+```
+---
+template: dynamic
+#### Ruby
+```ruby
+def hello_world
+  puts "Hello World!"
+end
+```
+---
+template: dynamic2
+name: dynamic3
+- Flexibility
+???
+Any two classes that CAN work together WILL work together
+
+---
+template: dynamic3
+name: dynamic4
+  - Any two classes that **can** work together **will** work together
+---
+template: dynamic4
+- Duck Typing
+???
+Dynamic typing causes us to use something i'll talk about in a minute called Duck Typing.
+---
+name: clean_code
+## Why Write Clean Code?
+???
+As we all know, ruby uses dynamic typing.
+---
+template: clean_code
+name: clean_code_2
+- Clear and Concise == Fewer Mistakes
+???
+Some motivation to write clean code
+- Clear and Concise == Fewer Mistakes
+- Ruby lacks "Documentation" of strong typed languages
+  Strong typed languages have words surrounding methods and variables that give the user insight into what's happening.
+---
+template: clean_code_2
+name: clean_code3
+- Ruby lacks "Documentation" of strong typed languages
+---
+template: clean_code3
+name: clean_code4
+
+```java
+public class HelloWorld
+{
+	public static void main(String[] args) {
+		System.out.println("Hello World!");
+	}
+}
+```
+???
+Back to our java example, one advantage to this is that it gives the user a much
+clearer picture on wahts happening here.
+I mean who wouldn't love to write things like this??
+---
+template: clean_code4
+name: clean_code5
+```ruby
+def is_longer_than?( number_of_characters )
+  @content.length > number_of_characters
+end
+```
+???
+Ahhhh much better. Here we use variable and argument names to help the user understand what's going on with our code.
+---
+template: clean_code5
+
+#### Same functionality
+```ruby
+def long(num)
+  @content.length > num
+end
+```
+???
+As we all know, naming is important. This function is pretty easy to figure out if you have the whole picture. but
+If i'm in a controller that's using my `long` function, I'm probably going to ahve to look it up to see whats going on.
+---
+class: inverse, middle
+"The look of the code matters. It matters because the people who use the code, read the code, and maintain the code matter."
+???
+Some motivation to write clean code
+I really like this quote as well. It's cheesy, but if you're going to work in this industry where things change constantly and new technologies, companies
+and jobs come and go, the people involved in creating this stuff are the constant that matters.
+
+---
+name: object_title
+## Everything's an object
+---
+name: objects
+template: object_title
+ - `-3`
+???
+ Next I'm going to talk about some key elements to Ruby. I'm not goingto go into detail about all of these, but more go over some
+ of the points that I found interesting.
+---
+name: shouting
+class: center, middle, shout
+#OBJECT!
+
+---
+name: objects2
+template: objects
+ - `"hello"`
+---
+template: shouting
+---
+template: objects2
+ - `false`
+---
+template: shouting
+---
+template: object_title
+name: duck
+#####Duck Typing
+ - Rely less on the type (or class) of an object and more on what methods can be called on it and what operations can be performed on it
+---
+template: duck
+ - `respond_to?`
+ ```ruby
+   "hello".respond_to?(:to_sym)
+ ```
+
+???
+Duck typing
+ - Strong typing and the fact that everything is an object means Ruby has
+ a tendency to be less concerned on the type of the Object and more on what methods can be called and what operations
+ can be performed on it.
+
+---
+name: blocks
+## Blocks
+---
+template: blocks
+```ruby
+@people.each do |person|
+  puts "Your name is #{person.first_name}"
+end
+```
+
+???
+I think everyone here is well aware of what blocks are how important they are in ruby.
+---
+template: blocks
+name: execute
+##### Execute around
+
+???
+Execute around is the executing code before or after a block.
+---
+template: execute
+```ruby
+  class SomeApplication
+
+    def do_something
+      with_logging('load') { @doc = Document.load( 'resume.txt' ) }
+
+      #Do something with the document...
+
+      with_logging('save') { @doc.save }
+    end
+
+    def with_logging(description)
+      begin
+        @logger.debug( "Starting #{description}" )
+        yield
+        @logger.debug( "Completed #description}" )
+      rescue
+        @logger.error( "#{description} failed!" )
+      end
+    end
+  end
+```
+???
+This is the finished product of the example he gives. If you want to see the progression he took to get to this point,
+I definitely recommend reading it in the book. It's only about 3 pages. The with_logging method is doing something before
+and after the block is executed.
+---
+template: blocks
+name: initialize
+##### Initialize with Execute Around
+---
+template: initialize
+name: initialize2
+```ruby
+def initialize(title, author, content = '')
+  @title = title
+  @author = author
+  @content = content
+  yield(self) if block_given
+end
+```
+---
+template: initialize2
+##### This allows you to:
+```ruby
+  new_doc = Document.new('US Constitution', 'Madison', '') do |d|
+    d.content << 'We the people'
+    d.content << 'In order to form a more perfect union'
+    d.content << 'provide for the common defense'
+  end
+```
+
+???
+You can allow your init function to accept a block, and use that block to initialize your objects.
+---
+template: blocks
+name: keep
+#### Things to keep in mind:
+- Blocks take scope with them
+- Pass arguments that the **execute around** method needs, not what the block needs
+- Explicitly return values
+???
+- Blocks take scope with them, so anything available before the `|` or `{` is available in the block.
+- The examples I've shown you, just throw away the value produced by the block. If you want to return a value
+you need to explicityl return it.
+---
+template: keep
+```ruby
+    def with_logging(description)
+      begin
+        @logger.debug( "Starting #{description}" )
+        return_value = yield
+        @logger.debug( "Completed #description}" )
+        return_value
+      rescue
+        @logger.error( "#{description} failed!" )
+      end
+    end
+```
+???
+This will take the value that the block returns, and then return it.
+---
+name: methods
+## Methods
+---
+template: methods
+name: methods2
+####Operators are methods
+---
+template: methods2
+name: methods3
+```ruby
+foo = first + second
+```
+---
+template: methods3
+name: methods4
+Is the same as
+```ruby
+foo = first.+(second)
+```
+
+???
+Once you realize this, you can overwrite these operators to meet your needs.
+---
+template: methods
+name: math
+.center[.middle[
+![math](http://www.thetrc.org/wp4/wp-content/uploads/2013/05/math_operators_538x265.png)
+]]
+???
+be care to remember the "cloud" of ideas that operators conjure for anyone using them.
+
+---
+template: methods
+
+.center[
+###`c = a + b`
+]
+
+???
+no one expects the value of B to change in this expression.
+**Authors Note**: Ruby's `equal?` is so good, theres no reason to change it. Ever.
+
+---
+name: singleton
+## Singleton Methods
+---
+template: singleton
+name: singleton2
+##### Methods defined for one object instance
+```ruby
+    hand_built_stub_printer = Object.new
+    def hand_built_stub_printer.available?
+      true
+    end
+```
+---
+template: singleton2
+name: singleton3
+
+**Class methods** are singleton methods
+
+???
+All methods inherit from Class, and we make a method on something like `Document`, we don't want it on all Class
+objects.
+
+---
+template: singleton3
+.center[
+![blown](http://i.giphy.com/H0rJsL6C33x0A.gif)
+]
+
+---
+name: missing
+## Method Missing
+???
+we can overrie `method_missing` in any of our classes and handle missing method cases ourselves.
+---
+template: missing
+name: missing2
+#### Error Handling
+
+```ruby
+class RepeatBackToMe
+  def method_missing( method_name, *args)
+    puts "Hey, you just called the #{method_name} method"
+    puts "With these arguments: #{args.join(' ')}"
+    puts "But there ain't no such method"
+  end
+end
+```
+???
+
+---
+template: missing
+name: missing3
+
+#### Magic Methods
+
+```ruby
+Class FormLetter < Document
+  def replace_word( old_word, new_word )
+    @content.gsub( old_word, '#{new_word}' )
+  end
+
+  def method_missing( name, *args )
+    string_name = name.to_s
+    return super unless string_name =~ /^replace_\w+/
+    old_word = extract_old_word(string_name)
+    replace_word( old_word, args.first )
+  end
+
+  def extract_old_word( name )
+    name_parts = name.split('_')
+    name_parts[1].upcase
+  end
+end
+```
+???
+Lets pretend we have a docment class, and now we have templates to generate letters to our
+customers. We have to start writing methods to replace strings in the template like FIRST NAME.
+We can `def` a new method for each and every type of string we might be replacing, or use method missing.
+`FIRST_NAME`, `LAST NAME`
+
+---
+template: missing3
+
+```ruby
+# Calling this
+replace_gender( 'Dude' )
+
+#Would result in this
+replace_word( 'GENDER', 'Dude')
+
+```
+???
+Method missing is also very helpful in Delegation, creating internal DSL's and creating friendlier API's
+
+---
+name: classes
+##Classes
+
+???
+Breaking up your code into many short single purpose methods not only plays to the strengths of Ruby,
+but also makes your application more testable.
+---
+template: classes
+name: classes2
+
+#### Composed Method Technique
+Each method should:
+???
+Divide classes into methods with three characteristics
+
+---
+template: classes2
+name: classes3
+- Do a single thing
+???
+Easier to write and understand
+---
+template: classes3
+name: classes4
+- Operate at a single conceptual leve
+???
+don't mix high level logic with nitty gritty details
+---
+template: classes4
+name: classes5
+- Have a name that reflects it's purpose
+???
+**The computer doesn't care about the names of your methods, variabels, etc. Following this principle helps you, the human, get the details right**
+---
+template: classes5
+name: classes6
+
+##### THIS IS GREAT FOR TESTING!!!!
+---
+name: messy_class
+```ruby
+class Document
+  # Most of class omitted...
+  def prose_rating
+    if pretentious_density > 0.3
+      if informal_density < 0.2
+        return :really_pretentious
+      else
+        return :somewhat_pretentious
+      end
+    elsif pretentious_density < 0.1
+      if informal_density > 0.3
+        return :really_informal
+      end
+      return :somewhat_informal
+    else
+      return :about_right
+    end
+  end
+
+  def pretentious_density
+    # Somehow compute density of pretentious words
+  end
+
+  def informal_density
+    # Somehow compute density of informal words
+  end
+end
+```
+---
+name: clean_class
+```ruby
+class Document
+  # Most of class omitted...
+  def prose_rating
+    return :really_pretentious if really_pretentious?
+    return :somewhat_pretentious if somewhat_pretentious?
+    return :really_informal if really_informal?
+    return :somewhat_informal if  somewhat_informal?
+    return :about_right
+  end
+
+  def really_pretentious?
+    pretentious_density > 0.3 && informal_density < 0.2
+  end
+
+  def somewhat_pretentious?
+    pretentious_density > 0.3 && informal_density >= 0.2
+  end
+
+  def really_informal?
+    pretentious_density < 0.1 && informal_density > 0.3
+  end
+
+  def somewhat_informal?
+    pretentious_density < 0.1 &&  informal_density <= 0.3
+  end
+
+  def pretentious_density
+    # Somehow compute density of pretentious words
+  end
+
+  def informal_density
+    # Somehow compute density of informal words
+  end
+end
+```
+???
+Breaking these things out really helps clarify your code, makes it easier to understand and of course
+---
+class: center
+#TESTS!
+![testing](http://i.giphy.com/WMGckTVyGJzvW.gif)
+---
+
+template: classes
+.center[
+![clutter](https://sherrievangelisto.files.wordpress.com/2013/01/screen-shot-2013-03-08-at-3-30-19-pm.png?w=500)
+]
+???
+Have to tow the line between adding value and adding clutter. clearly the second picture is better than the first. But imagine if instead of
+grouping these utensils 3 or four in a section, you decided to make an individual compartment for each one. It would be terrible trying
+to remember where each one is located, where each one goes back, how it fits exactly in the compartment for htem all to fit.
+
+---
+
+template: classes
+#### Open Classes
+- You can change the behavior of **any** class at **any** time.
+???
+Organizing your code like we just talked about, really helps you leverage ruby's open classes.
+change thebehavior of any class at any time.
+---
+
+.center[
+### LAST `def` WINS!!!!!
+![bots](http://i.giphy.com/JLUES4yaHLgpW.gif)
+]
+---
+template: messy_class
+???
+let's go back to our two class examples
+Again, this one has just a few methods, and one with a big if statement in it.
+What if you had a class that inherits from this one, but you just needed to tweek it.
+With this class, most likely your only option is to copy, paste, and rework it for your new subclass.
+---
+template: clean_class
+???
+Now with this class, you can easiy just re `def` one of these classes to meet your needs.
+---
+template: classes
+```ruby
+class Lyrics < Document
+  def really_pretentious?
+    #changed the density
+    pretentious_density > 0.7 && informal_density < 0.1
+  end
+end
+```
+???
+this is a very small example of what monkey patching is.
+---
+template: classes
+`guerilla`
+.center[
+![guerilla](http://img1.wikia.nocookie.net/__cb20120225201538/althistory/images/6/63/Che_Guevara_with_cigar.jpg)
+]
+
+---
+template: classes
+`gorilla`
+.center[
+  ![gorilla](https://metrouk2.files.wordpress.com/2010/07/article-1279120430841-0a70de80000005dc-904184_466x508.jpg)
+]
+---
+template: classes
+`monkey`
+.center[
+![monkey](http://o.aolcdn.com/hss/storage/midas/832ed1bdd3c2e2279112403d8bfb3e80/200374623/snow+monkey+iphone.jpg)
+]
+???
+Last def wins, let's us define class methods for any class the current class inherits from, and that method will be called first.
+Active Support is a good example.
+You could take this a step further, put programming logic in your classes and define methods based on constants.
+
+---
+template: classes
+#### Modifying Open Classes
+```ruby
+if ENCRYPTION_ENABLED
+  def encrypt( string )
+    string.tr( 'a-zA-Z', 'm-za-1M-ZA-L')
+  end
+else
+  def encrypt( string )
+    string
+  end
+end
+```
+???
+You can even create classes that modify their subclasses as well.
+
+---
+## Wrap Up
+- Fundamentals
+- Blocks
+- Methods
+- Classes
+???
+- Fundamentals
+  Talked about how dynamic typing affects how we right ruby
+  Causes us to use Duck Typing
+  Everything's an object
+- Blocks
+ Execute around
+ Initialize
+- Methods
+  Operaters
+  singleton
+  method missing
+- Classes
+  composed method technique
+    how to break up your class methods.
+  Open classes
+    Monkey patching
+    modifying your class with logic.
+---
+## Things I didn't cover
+- Testing
+- DSLs
+- Modules
+- Packaging gems
+- So much more
+---
+class: center, middle
+## Discussion
+
+    </textarea>
+    <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create({
+        highlightStyle: 'monokai',
+        slideNumberFormat: '%current%'
+      });
+    </script>
+  </body>
+</html>
+
+<!-- Object Methods
+
+[:allocate, :new, :superclass, :instance_methods, :private_instance_methods, :protected_instance_methods, :public_instance_methods, :freeze, :===, :==, :<=>, :<, :<=, :>, :>=, :to_s, :inspect, :included_modules, :include?, :name, :ancestors, :constants, :const_get, :const_set, :const_defined?, :const_missing, :class_variables, :remove_class_variable, :class_variable_get, :class_variable_set, :class_variable_defined?, :public_constant, :private_constant, :singleton_class?, :include, :prepend, :module_exec, :class_exec, :module_eval, :class_eval, :method_defined?, :public_method_defined?, :private_method_defined?, :protected_method_defined?, :public_class_method, :private_class_method, :autoload, :autoload?, :instance_method, :public_instance_method, :methods, :private_methods, :protected_methods, :public_methods, :singleton_methods, :nil?, :=~, :!~, :eql?, :hash, :class, :singleton_class, :clone, :dup, :taint, :tainted?, :untaint, :untrust, :untrusted?, :trust, :frozen?, :instance_variables, :instance_variable_get, :instance_variable_set, :instance_variable_defined?, :remove_instance_variable, :instance_of?, :kind_of?, :is_a?, :tap, :send, :public_send, :respond_to?, :extend, :display, :method, :public_method, :singleton_method, :define_singleton_method, :object_id, :to_enum, :enum_for, :ai, :awesome_inspect, :awesome_print, :equal?, :!, :!=, :instance_eval, :instance_exec, :__send__, :__id__] -->
