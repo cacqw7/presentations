@@ -40,7 +40,9 @@
 
 
 ???
-Some notes
+Talk about eloquent ruby.
+Who's read the book?
+There is a lot of great stuff, recommend it. I have the PDF.
 ---
 # Back to basics
 .center[
@@ -49,8 +51,12 @@ Some notes
 
 ???
 This whole presentation isn't to neccesarily teach you anything new, but to just start a conversation, and
-get everyones brains a little bit back to basics. We can get lost in the trudge of day in and day
-out programming, getting Pull Requests in, getting alerts squashed. So Take this as an opportunity to just
+get everyones brains a little bit back to basics.
+
+We can get lost in the trudge of day in and day
+out programming, getting Pull Requests in, getting alerts squashed.
+
+So Take this as an opportunity to just
 sit back, and think about some of the finer points of the language we use everyday.
 ---
 
@@ -61,26 +67,39 @@ sit back, and think about some of the finer points of the language we use everyd
   - Classes
 ???
   - A few basics (some thigns you know but might have taken for granted)
+
+
   This book is full of great material. The rest will be just highlighting some parts of
-  the ruby language that I found particularly interesting. A little higher level than just
+  the ruby language that I found particularly interesting.
+
+  A little higher level than just
   making you guys listen to all the ways strings can be manipulated.
-  - Blocks, methods, and then classes
+
+- Blocks, methods, and then classes
 
 ---
 class: middle, inverse
 > "Ruby is a language for grownups. It gives you the tools for writing clear and concise code, but it's up to you to use them."
 
 ???
-This is quote that really stood out to me in the book. At least for me, it's something I think I take for granted more often
-than not. Ruby really gives us all the control when writing code. Just the thought of having to define the Type our function will
+This is quote that really stood out to me in the book.
+
+At least for me, it's something I think I take for granted more often
+than not.
+
+Ruby really gives us all the control when writing code.
+
+Just the thought of having to define the Type our function will
 take in and the type it will return makes most of us squeem. let alone strongly typed variables as well.
 
 ---
 name: dynamic
 ## Dynamic Typing
 ???
-Ruby uses dynamic typing, as well all know meaning we don't have to explicitly state types.
+As we all know, Ruby uses dynamic typing, meaning we don't have to explicitly state types.
+
 Arguemnt types, variable types, return value types.
+
 There are some clear advantages to this.
 ---
 template: dynamic
@@ -134,7 +153,9 @@ name: clean_code_2
 - Clear and Concise == Fewer Mistakes
 ???
 Some motivation to write clean code
+
 - Clear and Concise == Fewer Mistakes
+
 - Ruby lacks "Documentation" of strong typed languages
   Strong typed languages have words surrounding methods and variables that give the user insight into what's happening.
 ---
@@ -154,8 +175,12 @@ public class HelloWorld
 }
 ```
 ???
-Back to our java example, one advantage to this is that it gives the user a much
+Back to our java example,
+
+one advantage to this is that it gives the user a much
+
 clearer picture on wahts happening here.
+
 I mean who wouldn't love to write things like this??
 ---
 template: clean_code4
@@ -166,7 +191,9 @@ def is_longer_than?( number_of_characters )
 end
 ```
 ???
-Ahhhh much better. Here we use variable and argument names to help the user understand what's going on with our code.
+Ahhhh much better.
+
+Here we use variable and argument names to help the user understand what's going on with our code.
 ---
 template: clean_code5
 
@@ -177,8 +204,14 @@ def long(num)
 end
 ```
 ???
-As we all know, naming is important. This function is pretty easy to figure out if you have the whole picture. but
-If i'm in a controller that's using my `long` function, I'm probably going to ahve to look it up to see whats going on.
+As we all know, naming is important.
+
+This function is pretty easy to figure out if you have the whole picture. but
+
+
+If i'm in a controller that's using my `long` function,
+
+I'm probably going to ahve to look it up to see whats going on.
 ---
 class: inverse, middle
 "The look of the code matters. It matters because the people who use the code, read the code, and maintain the code matter."
@@ -195,7 +228,10 @@ name: objects
 template: object_title
  - `-3`
 ???
- Next I'm going to talk about some key elements to Ruby. I'm not goingto go into detail about all of these, but more go over some
+ Next I'm going to talk about some key elements to Ruby.
+
+ I'm not goingto go into detail about all of these, but more go over some
+
  of the points that I found interesting.
 ---
 name: shouting
@@ -228,7 +264,9 @@ template: duck
 ???
 Duck typing
  - Strong typing and the fact that everything is an object means Ruby has
+
  a tendency to be less concerned on the type of the Object and more on what methods can be called and what operations
+
  can be performed on it.
 
 ---
@@ -276,8 +314,14 @@ template: execute
   end
 ```
 ???
-This is the finished product of the example he gives. If you want to see the progression he took to get to this point,
-I definitely recommend reading it in the book. It's only about 3 pages. The with_logging method is doing something before
+This is the finished product of the example he gives.
+
+If you want to see the progression he took to get to this point,
+
+I definitely recommend reading it in the book. It's only about 3 pages.
+
+The with_logging method is doing something before
+
 and after the block is executed.
 ---
 template: blocks
@@ -315,7 +359,9 @@ name: keep
 - Pass arguments that the **execute around** method needs, not what the block needs
 - Explicitly return values
 ???
+
 - Blocks take scope with them, so anything available before the `|` or `{` is available in the block.
+
 - The examples I've shown you, just throw away the value produced by the block. If you want to return a value
 you need to explicityl return it.
 ---
@@ -375,6 +421,7 @@ template: methods
 
 ???
 no one expects the value of B to change in this expression.
+
 **Authors Note**: Ruby's `equal?` is so good, theres no reason to change it. Ever.
 
 ---
@@ -397,8 +444,9 @@ name: singleton3
 **Class methods** are singleton methods
 
 ???
-All methods inherit from Class, and we make a method on something like `Document`, we don't want it on all Class
-objects.
+All methods inherit from Class, and we make a method on something like `Document`,
+
+we don't want it on all Class objects.
 
 ---
 template: singleton3
@@ -453,9 +501,14 @@ Class FormLetter < Document
 end
 ```
 ???
-Lets pretend we have a docment class, and now we have templates to generate letters to our
+Lets pretend we have a docment class,
+
+and now we have templates to generate letters to our
+
 customers. We have to start writing methods to replace strings in the template like FIRST NAME.
+
 We can `def` a new method for each and every type of string we might be replacing, or use method missing.
+
 `FIRST_NAME`, `LAST NAME`
 
 ---
@@ -477,7 +530,10 @@ name: classes
 ##Classes
 
 ???
-Breaking up your code into many short single purpose methods not only plays to the strengths of Ruby,
+Breaking up your code into many short single
+
+purpose methods not only plays to the strengths of Ruby,
+
 but also makes your application more testable.
 ---
 template: classes
@@ -505,7 +561,9 @@ template: classes4
 name: classes5
 - Have a name that reflects it's purpose
 ???
-**The computer doesn't care about the names of your methods, variabels, etc. Following this principle helps you, the human, get the details right**
+**The computer doesn't care about the names of your methods,
+
+variabels, etc. Following this principle helps you, the human, get the details right**
 ---
 template: classes5
 name: classes6
@@ -581,7 +639,9 @@ class Document
 end
 ```
 ???
-Breaking these things out really helps clarify your code, makes it easier to understand and of course
+Breaking these things out really helps clarify your code,
+
+makes it easier to understand and of course
 ---
 class: center
 #TESTS!
@@ -593,9 +653,17 @@ template: classes
 ![clutter](https://sherrievangelisto.files.wordpress.com/2013/01/screen-shot-2013-03-08-at-3-30-19-pm.png?w=500)
 ]
 ???
-Have to tow the line between adding value and adding clutter. clearly the second picture is better than the first. But imagine if instead of
-grouping these utensils 3 or four in a section, you decided to make an individual compartment for each one. It would be terrible trying
-to remember where each one is located, where each one goes back, how it fits exactly in the compartment for htem all to fit.
+Have to tow the line between adding value and adding clutter.
+
+clearly the second picture is better than the first. But imagine if instead of
+
+grouping these utensils 3 or four in a section, you decided to make an individual compartment for each one.
+
+It would be terrible trying
+
+to remember where each one is located, where each one goes back,
+
+how it fits exactly in the compartment for htem all to fit.
 
 ---
 
@@ -615,13 +683,24 @@ change thebehavior of any class at any time.
 template: messy_class
 ???
 let's go back to our two class examples
-Again, this one has just a few methods, and one with a big if statement in it.
-What if you had a class that inherits from this one, but you just needed to tweek it.
-With this class, most likely your only option is to copy, paste, and rework it for your new subclass.
+
+Again, this one has just a few methods,
+
+and one with a big if statement in it.
+
+What if you had a class that inherits from this one,
+
+but you just needed to tweek it.
+
+With this class, most likely your only option is to copy,
+
+paste, and rework it for your new subclass.
 ---
 template: clean_class
 ???
-Now with this class, you can easiy just re `def` one of these classes to meet your needs.
+Now with this class, you can easiy just re `def`
+
+one of these classes to meet your needs.
 ---
 template: classes
 ```ruby
@@ -654,9 +733,17 @@ template: classes
 ![monkey](http://o.aolcdn.com/hss/storage/midas/832ed1bdd3c2e2279112403d8bfb3e80/200374623/snow+monkey+iphone.jpg)
 ]
 ???
-Last def wins, let's us define class methods for any class the current class inherits from, and that method will be called first.
+Last def wins,
+
+let's us define class methods for any class the current class inherits from,
+
+and that method will be called first.
+
 Active Support is a good example.
-You could take this a step further, put programming logic in your classes and define methods based on constants.
+
+You could take this a step further,
+
+put programming logic in your classes and define methods based on constants.
 
 ---
 template: classes
@@ -721,7 +808,3 @@ class: center, middle
     </script>
   </body>
 </html>
-
-<!-- Object Methods
-
-[:allocate, :new, :superclass, :instance_methods, :private_instance_methods, :protected_instance_methods, :public_instance_methods, :freeze, :===, :==, :<=>, :<, :<=, :>, :>=, :to_s, :inspect, :included_modules, :include?, :name, :ancestors, :constants, :const_get, :const_set, :const_defined?, :const_missing, :class_variables, :remove_class_variable, :class_variable_get, :class_variable_set, :class_variable_defined?, :public_constant, :private_constant, :singleton_class?, :include, :prepend, :module_exec, :class_exec, :module_eval, :class_eval, :method_defined?, :public_method_defined?, :private_method_defined?, :protected_method_defined?, :public_class_method, :private_class_method, :autoload, :autoload?, :instance_method, :public_instance_method, :methods, :private_methods, :protected_methods, :public_methods, :singleton_methods, :nil?, :=~, :!~, :eql?, :hash, :class, :singleton_class, :clone, :dup, :taint, :tainted?, :untaint, :untrust, :untrusted?, :trust, :frozen?, :instance_variables, :instance_variable_get, :instance_variable_set, :instance_variable_defined?, :remove_instance_variable, :instance_of?, :kind_of?, :is_a?, :tap, :send, :public_send, :respond_to?, :extend, :display, :method, :public_method, :singleton_method, :define_singleton_method, :object_id, :to_enum, :enum_for, :ai, :awesome_inspect, :awesome_print, :equal?, :!, :!=, :instance_eval, :instance_exec, :__send__, :__id__] -->
