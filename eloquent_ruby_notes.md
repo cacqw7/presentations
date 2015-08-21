@@ -1,9 +1,3 @@
-## Presentation Ideas
-* Make people write terrible examples of code
-	* Refactor, reviewing solid Ruby design principles
-
-
-
 ## Reading Notes
 
 
